@@ -1,5 +1,6 @@
 import os
 import json
+from json.decoder import JSONDecodeError
 
 import grequests
 from bs4 import BeautifulSoup
@@ -92,7 +93,7 @@ class SubscribtionsManager:
         if subscription in self.subscriptions:
             raise UserAlreadyRegistered
 
-        self.subscriptions.add(subscription)
+        self.subscriptions.append(subscription)
         with open('subscriptions.json', 'w') as file:
             json.dump(self.subscriptions, file)
 
